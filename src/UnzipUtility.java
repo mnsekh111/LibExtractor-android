@@ -25,21 +25,26 @@ public class UnzipUtility {
             ZipEntry ze;
             while ((ze = zis.getNextEntry()) != null) {
                 String fileName = ze.getName();
-                System.out.println(fileName);
-                String[] splitArray = fileName.split(".");
-                if (splitArray.length > 0) {
-                    if (splitArray[splitArray.length - 1].toLowerCase().contentEquals("so")) {
-                        soCount++;
-                        System.out.println(fileName);
-                    }
+
+                String extension = "";
+                int i = fileName.lastIndexOf('.');
+                if (i > 0) {
+                    extension = fileName.substring(i + 1);
                 }
+
+                if (extension.toLowerCase().contentEquals("so")) {
+                    soCount++;
+                    System.out.println(fileName);
+                }
+
 
             }
         } finally {
             zis.close();
         }
 
-        System.out.println("Number of Libs: "+soCount);
+        
+        System.out.println("Number of Libs: " + soCount);
     }
 
 
