@@ -50,7 +50,7 @@ public class LibInfo {
 
     public String getArchType(){
         if(property != null){
-            return property.get("Tag_CPU_name") + property.get("Tag_CPU_arch");
+            return property.get("Tag_CPU_name") +" "+ property.get("Tag_CPU_arch");
         }
         return "";
     }

@@ -13,13 +13,14 @@ import java.util.Map;
 public class CommandUtility {
 
     /**
-     *  Helper function to execute readelf with -A option. (Which is to extract only architectural properties of a file)
-     *  The problem can be solved using obj dump as well
+     * Helper function to execute readelf with -A option. (Which is to extract only architectural properties of a file)
+     * The problem can be solved using obj dump as well
+     *
      * @param fileName
      * @return
      * @throws IOException
      */
-    public static Map<String,String> execReadelf(String fileName) throws IOException {
+    public static Map<String, String> execReadelf(String fileName) throws IOException {
 
         Map<String, String> propertyMap = new HashMap<>();
 
@@ -46,7 +47,7 @@ public class CommandUtility {
                 int index = line.indexOf(":");
                 if (index != -1) {
                     try {
-                        propertyMap.put(line.substring(0, index), line.substring(index + 1));
+                        propertyMap.put(line.substring(0, index).trim(), line.substring(index + 1).trim());
                     } catch (ArrayIndexOutOfBoundsException aie) {
 
                     }

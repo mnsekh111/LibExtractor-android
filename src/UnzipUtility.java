@@ -66,6 +66,7 @@ public class UnzipUtility {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getName());
             list.get(i).getAllProperty();
+            //System.out.println(list.get(i).getArchType());
             System.out.println();
         }
 
