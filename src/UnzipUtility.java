@@ -44,6 +44,7 @@ public class UnzipUtility {
                     LibInfo info = new LibInfo(fileName);
                     try {
                         extractFile(zis, myTempDir.getPath()+File.separator+info.getFileName());
+                        CommandUtility.execReadelf(myTempDir.getPath()+File.separator+info.getFileName());
                     }catch(IOException ie){
                         ie.printStackTrace();
                     }
