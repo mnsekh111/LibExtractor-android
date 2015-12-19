@@ -1,13 +1,12 @@
 /**
  * Created by mns on 12/19/15.
  */
-public class UnzipUtilityTest {
+public class LibExtractor {
     public static void main(String[] args) {
         String zipFilePath = "/home/mns/Downloads/test-apk.apk";
-        String destDirectory = "/home/mns/Downloads/Pics";
         UnzipUtility unzipper = new UnzipUtility();
         try {
-            unzipper.traverseZip(zipFilePath);
+            unzipper.traverseZip(args[0]);
         } catch (Exception ex) {
             // some errors occurred
             ex.printStackTrace();
