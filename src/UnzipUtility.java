@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -7,6 +8,7 @@ public class UnzipUtility {
      * Size of the buffer to read/write data
      */
     private static final int BUFFER_SIZE = 4096;
+    private ArrayList<LibInfo> list = new ArrayList<>();
 
     /**
      * Traverses through the Zip file tree
@@ -20,7 +22,12 @@ public class UnzipUtility {
         BufferedInputStream bin = new BufferedInputStream(new FileInputStream(file));
         ZipInputStream zis = new ZipInputStream(bin);
 
-        int soCount = 0;
+
+        File myTempDir = new File("temp");
+        if(!myTempDir.exists()){
+            myTempDir.mkdir();
+        }
+
         try {
             ZipEntry ze;
             while ((ze = zis.getNextEntry()) != null) {
@@ -33,8 +40,16 @@ public class UnzipUtility {
                 }
 
                 if (extension.toLowerCase().contentEquals("so")) {
-                    soCount++;
-                    System.out.println(fileName);
+
+                    LibInfo info = new LibInfo(fileName);
+                    try {
+                        extractFile(zis, myTempDir.getPath()+File.separator+info.getFileName());
+                    }catch(IOException ie){
+                        ie.printStackTrace();
+                    }
+                    list.add(info);
+                    //System.out.println(fileName);
+
                 }
 
 
@@ -43,8 +58,9 @@ public class UnzipUtility {
             zis.close();
         }
 
-        
-        System.out.println("Number of Libs: " + soCount);
+
+        System.out.println("Number of Libs: " + list.size());
+
     }
 
 
