@@ -7,6 +7,8 @@ import java.util.Map;
 
 /**
  * Container class for the information about the files
+ *  property : HashMap of property name and property value
+ *  name : full path name of the library
  */
 public class LibInfo {
     private String name;

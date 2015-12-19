@@ -11,7 +11,8 @@ public class UnzipUtility {
     private ArrayList<LibInfo> list = new ArrayList<>();
 
     /**
-     * Traverses through the Zip file tree
+     * Traverses through the Zip file tree and extracts the .so files to the temp directory
+     * and calls realelf for each of the found lib file
      *
      * @param zipFilePath
      * @throws IOException
@@ -62,17 +63,22 @@ public class UnzipUtility {
 
         System.out.println("Number of Libs: " + list.size());
 
-        for(int i = 0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getName());
             list.get(i).getAllProperty();
             System.out.println();
         }
 
-
-
+        //deleteDirectory(myTempDir);
     }
 
-
+    /**
+     * Function to unzip all the files in zipFilePath to desDirectory
+     * NOTE : Not used (Can make it private)
+     * @para:  zipFilePath
+     * @param destDirectory
+     * @throws IOException
+     */
     public void unzip(String zipFilePath, String destDirectory) throws IOException {
         File destDir = new File(destDirectory);
         if (!destDir.exists()) {
@@ -123,5 +129,30 @@ public class UnzipUtility {
             bos.write(bytesIn, 0, read);
         }
         bos.close();
+    }
+
+
+    /**
+     * Recursively deletes a directory
+     *
+     * @param directory
+     * @return
+     */
+    public static boolean deleteDirectory(File directory) {
+        if (directory.exists()) {
+            File[] files = directory.listFiles();
+            if (null != files) {
+                for (int i = 0; i < files.length; i++) {
+                    if (files[i].isDirectory()) {
+
+                        //Recursive delete
+                        deleteDirectory(files[i]);
+                    } else {
+                        files[i].delete();
+                    }
+                }
+            }
+        }
+        return (directory.delete());
     }
 }
