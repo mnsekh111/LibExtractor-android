@@ -24,7 +24,7 @@ public class UnzipUtility {
 
 
         File myTempDir = new File("temp");
-        if(!myTempDir.exists()){
+        if (!myTempDir.exists()) {
             myTempDir.mkdir();
         }
 
@@ -43,9 +43,9 @@ public class UnzipUtility {
 
                     LibInfo info = new LibInfo(fileName);
                     try {
-                        extractFile(zis, myTempDir.getPath()+File.separator+info.getFileName());
-                        CommandUtility.execReadelf(myTempDir.getPath()+File.separator+info.getFileName());
-                    }catch(IOException ie){
+                        extractFile(zis, myTempDir.getPath() + File.separator + info.getFileName());
+                        info.setProperty(CommandUtility.execReadelf(myTempDir.getPath() + File.separator + info.getFileName()));
+                    } catch (IOException ie) {
                         ie.printStackTrace();
                     }
                     list.add(info);
@@ -61,6 +61,7 @@ public class UnzipUtility {
 
 
         System.out.println("Number of Libs: " + list.size());
+        
 
     }
 
