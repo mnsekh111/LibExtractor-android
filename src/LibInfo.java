@@ -38,7 +38,7 @@ public class LibInfo {
         this.property = map;
     }
 
-    public void getPropertyAllProperty() {
+    public void getAllProperty() {
         if (property != null) {
             for (Map.Entry<String, String> entry : property.entrySet()) {
                 System.out.println(entry.getKey() + ": " + entry.getValue());
