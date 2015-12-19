@@ -11,7 +11,7 @@ Done for Bluestacks Hiring Challenge
     
     You can specify any output folder. (I'm using the convention followed by intellij)
 
-3. Now enter ../out/production/LibExtractor/ 
+3. Now enter cd ../out/production/LibExtractor/ 
     You should be in out/production/LibExtractor/  
 
 4. Run LibExtractor.class using java LibExtractor <absolute-location0of-apk>
@@ -26,6 +26,9 @@ In LibInfo file you can add methods to extract specific properties. Currently th
 ![ScreenShot](https://raw.githubusercontent.com/mnsekh111/LibExtractor-android/master/screenshots/Screenshot%20from%202015-12-19%2015%3A44%3A34.png)
 
 
+5. While running please uncomment deleteDirectory(myTempDir); in traverseZip() in UnzipUtility.java
+
 
 # View extracted .so files
  Please refer to temp firectory within the project
+ 
